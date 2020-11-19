@@ -1,0 +1,10 @@
+#filter{
+    width: 20%;
+    float:left;
+    border-width: 1px;
+}
+#menu{
+    width:80%;
+    float:right;
+    border-width: 1px;
+}

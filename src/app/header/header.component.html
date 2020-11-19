@@ -1,0 +1,35 @@
+<div style="display:block;">
+
+    <div class="menu d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm" style="display:inline">
+        
+        <div class="my-0 mr-md-auto font-weight-normal d-flex flex-column flex-md-row align-items-center">
+            <h5 class="my-0 mr-md-3"><a routerLink="/home" >Home</a></h5>
+            <nav class= "my-2 my-md-0 mr-md-auto">
+                <ng-container *ngIf="adminAuth.isAuthenticated()">
+                    <a routerLink="/manage-product" class="p-2 text-blue">Product</a>|
+                    <a routerLink="/manage-company" class="p-2 text-blue">Provider</a>
+                </ng-container>
+            </nav>
+        </div>
+
+
+        <div class="my-2 my-md-0 mr-md-3">
+            <ng-container *ngIf="!auth.isAuthenticated() && !adminAuth.isAuthenticated() ">
+                <nav >
+                    <a routerLink="/auth/login" class="p-2 text-dark">Login</a>|
+                    <a [routerLink]="['/auth/register']" class="p-2 text-dark">Register</a>
+                </nav>
+            </ng-container>
+
+            <ng-container *ngIf="auth.isAuthenticated() && !adminAuth.isAuthenticated()">
+                <a routerLink="/cart">Cart</a>|
+                <a (click)="logout();">Logout</a>
+            </ng-container>
+
+            <ng-container *ngIf="adminAuth.isAuthenticated()">
+                <a (click)="adminLogout();">Logout(admin)</a>
+            </ng-container>
+        </div>
+        
+    </div>
+</div>

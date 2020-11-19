@@ -1,0 +1,8 @@
+.product-view{
+    width: 60%;
+    float:left;
+}
+.product-info{
+    width:40%;
+    float:right;
+}

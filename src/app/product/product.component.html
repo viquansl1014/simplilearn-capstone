@@ -1,0 +1,17 @@
+<div class="container">
+
+    <div *ngIf="product" style="display:inline" >
+        <div class="product-view">
+            <img src="{{product.image}}" alt="" width="600" height="600">
+        </div>
+        <div class="product-info">
+            <h2>{{product.pname}}</h2>
+            <h3>{{product.price}}</h3>
+            <p>{{product.description}}</p>
+            <div class="product-info-options">
+                <input type="button"  [routerLink]="['/cart',{id:product._id} ]" value="Add to Cart" class="btn btn-dark"/>
+            </div>
+        </div>
+    </div>
+
+</div>

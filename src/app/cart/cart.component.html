@@ -1,0 +1,51 @@
+<div>
+    <div class="container">
+        <h3>Cart Info</h3>
+        <table style="width:100%" class = "list-group mb-3">
+            <tr class="list-group-item d-flex justify-content-between lh-condensed">
+                <div style='width:100%'>
+                    <th style='width:5%'>Option</th>
+                    <th style='width:65%'></th>
+                    <th >Quantity</th>
+                    <th style='width:10%'>
+                        <div align="right">
+                            Sub Total
+                        </div>
+                    </th>
+                </div >
+            </tr>
+            <tr *ngFor="let item of items" class="list-group-item d-flex justify-content-between lh-condensed"> 
+                <td align="center">
+                    <a (click)="remove(item.product._id)">&#10060;</a>
+                </td>
+               
+                <td>
+                    <div style="display:block">
+                        <p>
+                            <b>{{item.product.pname}}</b>
+                        </p>
+                        <p>
+                            <img src="{{item.product.image}}" width="250" height="100"> 
+                        </p>
+                        <p> 
+                            <small class="text-muted"> {{item.product.price}}</small>
+                        </p>
+                    </div>
+
+        
+                </td>
+                <td>{{item.quantity}}</td>
+                <td>{{item.product.price * item.quantity}}</td>
+            </tr>
+            <tr class="list-group-item d-flex justify-content-between lh-condensed">
+                <td colspan="3" align="right">Total</td>
+                <td><b>{{total}}</b></td>
+            </tr>
+        </table>
+
+        <hr class="mb-4">
+        <input type="button" value="Checkout" (click)="checkOut()" class="btn btn-dark btn-lg btn-block"/>
+
+        <p style="color:green"><b>{{cartInfo}}</b></p>
+    </div>
+</div>

@@ -1,0 +1,112 @@
+<div>
+
+    <div class="container">
+        
+        <div *ngIf="listing">
+            <div class="mb-2">
+                <input type="button" value="New Item" (click)="newItem()" class="btn btn-light"/><br>
+            </div>
+
+            <table style="width:100%" class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Provider ID</th>
+                        <th scope="col">Manage</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let p of products" scope="row">
+                        <td>{{p._id}}</td>
+                        <td>{{p.pname}}</td>
+                        <td>{{p.company}} {{p.company.cname}}</td>
+                        <td>
+                            <div class="btn-group" role="group">
+                                <input type="button" value="Update" (click)="updateItem(p)" class="btn btn-light"/>
+                                <input type="button" value="Delete" (click)="deleteItem(p)" class="btn btn-light">        
+                            </div>
+        
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div *ngIf="new_item">
+            <div >
+                <h5>
+                    <a (click)="listingView()" class="p-2 text-dark">Back</a>
+                </h5>
+                <br>
+                
+
+                <div class="container">
+                    <div class="card">
+                        
+                        <form [formGroup]="productRef" (ngSubmit)="registerItemtoDb()" class="form-group mx-4 my-5">
+                            <h2>New item</h2>
+                            <label>Product Id</label>
+                            <input type="text" formControlName="pid" class="form-control"/><br/>
+                            <label>Product Name</label>
+                            <input type="text" formControlName="pname" class="form-control"/><br/>
+                            <label>Product Price</label>
+                            <input type="number" formControlName="price" class="form-control"/><br/>
+                            <label>Description</label>
+                            <input type="text" formControlName="description" class="form-control"/><br>
+                            <label>Image URL</label>
+                            <input type="text" formControlName="image" class="form-control"/><br>
+                            <label>Company</label>
+                            <select formControlName="company" class="form-control">
+                                <option *ngFor="let comp of companies" value="{{comp.cname}}" >{{comp.cname}}</option>
+                            </select>
+                            <hr>
+                            <input type="submit" value="Store Product" class="btn btn-primary btn-lg btn-block"/>
+                        </form>
+                        <p><b>{{result}} </b></p>
+                    </div>
+
+                </div>
+            </div>
+                
+        </div>
+            
+            <div *ngIf="update_item">
+                <div >
+                    <h5>
+                        <a (click)="listingView()" class="p-2 text-dark">Back</a>
+                    </h5>
+                    <br>
+                    
+
+                    <div class="container">
+                        <div class="card">
+                            <form [formGroup]="productRef" (ngSubmit)="updateItemtoDb()" class="form-group mx-4 my-5">
+                                <h2>Update item</h2>
+                                <label>Product Id</label>
+                                <input type="text" formControlName="pid" [(ngModel)]="uProduct.pid" class="form-control"/><br/>
+                                <label>Product Name</label>
+                                <input type="text" formControlName="pname" [(ngModel)]="uProduct.pname" class="form-control"/><br/>
+                                <label>Product Price</label>
+                                <input type="number" formControlName="price" [(ngModel)]="uProduct.price" class="form-control"/><br/>
+                                <label>Description</label>
+                                <input type="text" formControlName="description" [(ngModel)]="uProduct.description" class="form-control"/><br>
+                                <label>Image URL</label>
+                                <input type="text" formControlName="image" [(ngModel)]="uProduct.image" class="form-control"/><br>
+                                <label>Company</label>
+                                <select formControlName="company" class="form-control">
+                                    <option *ngFor="let comp of companies" value="{{comp.cname}}" >{{comp.cname}}</option>
+                                </select>
+
+                                <input type="submit" value="Update" class="btn btn-warning btn-lg btn-block"/>
+                            </form>
+                            <p><b>{{result}} </b></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+    </div>
+
+</div>

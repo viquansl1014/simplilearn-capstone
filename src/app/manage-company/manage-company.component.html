@@ -1,0 +1,84 @@
+<div>
+    <div class="container">
+        <div *ngIf="listing">
+            <div class="mb-2">
+                <input type="button" value="New Company" (click)="newItem()" class="btn btn-light"/><br>
+            </div>
+
+            <table style="width:100%" class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Manage</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let c of companies" scope="row">
+                        <td>{{c._id}}</td>
+                        <td>{{c.cname}}</td>
+                        <td>
+                            <div class="btn-group" role="group">
+                                <input type="button" value="Update" (click)="updateItem(c)" class="btn btn-light"/>
+                                <input type="button" value="Delete" (click)="deleteItem(c)" class="btn btn-light">                
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div *ngIf="new_item">
+            <div >
+                <h5>
+                    <a (click)="listingView()" class="p-2 text-dark">Back</a>
+                </h5>
+                <br>
+                
+
+                <div class="container">
+                    <div class="card">
+                    
+                        <form [formGroup]="companyRef" (ngSubmit)="registerItemtoDb()" class="form-group mx-4 my-5">
+                            <h2>New Company</h2>
+                            <label>Company Name</label>
+                            <input type="text" formControlName="cname" class="form-control"/><br/>
+                            <hr>
+                            <input type="submit" value="Store Company" class="btn btn-primary btn-lg btn-block"/>
+                        </form>
+                        <p><b>{{result}} </b></p>
+
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+
+        <div *ngIf="update_item">
+            <div >
+                <h5>
+                    <a (click)="listingView()" class="p-2 text-dark">Back</a>
+                </h5>
+                <br>
+                
+
+                <div class="container">
+                    <div class="card">
+                    <form [formGroup]="companyRef" (ngSubmit)="updateItemtoDb()" class="form-group mx-4 my-5">
+                        <h2>Update Company</h2>
+                        <input type="hidden" formControlName="cid" [(ngModel)]="uProduct.cid">
+                        <label>Product Name</label>
+                        <input type="text" formControlName="cname" [(ngModel)]="uProduct.cname" class="form-control"/><br/>
+                        <hr>
+                        <input type="submit" value="Update" class="btn btn-warning btn-lg btn-block"/>
+                    </form>
+                    <p><b>{{result}} </b></p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

@@ -1,3 +1,10 @@
+# To run this
+    1. start mongodb: mongod --dbpath ./backend/data/db
+    2. start backend server: node ./backend/app.js
+    3. start angular: ng serve
+
+    make sure npm install for BOTH angular AND nodejs in /backend maybe
+
 # CapstoneProject
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.2.0.
